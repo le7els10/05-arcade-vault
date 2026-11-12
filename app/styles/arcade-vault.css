@@ -136,6 +136,12 @@
   .av-nav .hamburger { display: inline-flex; }
 }
 
+/* Not in the template: logo + auth button + hamburger overflow at 375px */
+@media (max-width: 480px) {
+  .av-nav { gap: 12px; }
+  .av-nav .auth-btn { margin-left: 0; padding: 12px 14px; }
+}
+
 .av-mobile-panel {
   position: fixed;
   inset: 0 0 0 auto;
@@ -257,6 +263,7 @@
 .av-search:focus-within { border-color: var(--cyan); box-shadow: 0 0 12px rgba(0,245,255,0.35); }
 .av-search input {
   flex: 1; background: transparent; border: 0; outline: 0;
+  padding: 1px 2px; /* UA default, reset by Tailwind preflight */
   color: var(--ink); font-size: 13px; letter-spacing: 0.04em;
 }
 .av-search input::placeholder { color: var(--ink-faint); }
@@ -907,3 +914,14 @@
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
 }
 @keyframes spinpix { to { transform: rotate(360deg); } }
+
+/* Not in the template: the 720px hall-table columns still overflow at 375px */
+@media (max-width: 480px) {
+  .hall-table .th, .hall-table .tr {
+    grid-template-columns: 44px minmax(0, 1fr) 92px 76px;
+    padding: 10px;
+    gap: 6px;
+  }
+  .hall-table .th { font-size: 8px; letter-spacing: 0.08em; }
+  .hall-table .tr .pl { overflow-wrap: anywhere; }
+}
