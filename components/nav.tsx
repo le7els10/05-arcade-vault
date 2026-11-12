@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@/components/user-provider";
 
-type Section = "biblioteca" | "salon" | "auth";
+type Section = "inicio" | "juegos" | "salon" | "auth";
 
 function isActive(pathname: string | null, section: Section): boolean {
   if (!pathname) return false;
-  if (section === "biblioteca") return pathname === "/" || pathname.startsWith("/juegos");
+  if (section === "inicio") return pathname === "/";
   return pathname === `/${section}` || pathname.startsWith(`/${section}/`);
 }
 
@@ -31,7 +31,8 @@ export function NavView({ pathname }: { pathname: string | null }) {
           </div>
         </Link>
         <div className="links">
-          <Link href="/" className={cls("biblioteca")} onClick={close}>Biblioteca</Link>
+          <Link href="/" className={cls("inicio")} onClick={close}>Inicio</Link>
+          <Link href="/juegos" className={cls("juegos")} onClick={close}>Biblioteca</Link>
           <Link href="/salon" className={cls("salon")} onClick={close}>Salón de la Fama</Link>
         </div>
         <div className="spacer"></div>
@@ -50,7 +51,8 @@ export function NavView({ pathname }: { pathname: string | null }) {
       <div className={"av-mobile-backdrop" + (open ? " open" : "")} onClick={close}></div>
       <aside className={"av-mobile-panel" + (open ? " open" : "")} inert={!open}>
         <div className="pixel neon-cyan" style={{ fontSize: 11, marginBottom: 16 }}>MENÚ</div>
-        <Link href="/" className={cls("biblioteca")} onClick={close}>Biblioteca</Link>
+        <Link href="/" className={cls("inicio")} onClick={close}>Inicio</Link>
+        <Link href="/juegos" className={cls("juegos")} onClick={close}>Biblioteca</Link>
         <Link href="/salon" className={cls("salon")} onClick={close}>Salón de la Fama</Link>
         <Link href="/auth" className={cls("auth")} onClick={close}>{user ? "Cuenta" : "Iniciar Sesión"}</Link>
         <div style={{ flex: 1 }}></div>
