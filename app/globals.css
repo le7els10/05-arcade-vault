@@ -18,9 +18,13 @@
   --bronze: #d97a3a;
   --line: rgba(0, 245, 255, 0.18);
   --line-2: rgba(255, 255, 255, 0.06);
-  /* font families come from next/font (see app/layout.tsx) */
-  --pixel: var(--font-press-start), system-ui, monospace;
-  --mono: var(--font-jetbrains-mono), var(--font-courier-prime), "Courier New", monospace;
+  /* The @font-face rules come from next/font (see app/layout.tsx), but the stacks
+     name the families directly instead of using var(--font-*): those variables
+     put next/font's metric-adjusted Arial ("X Fallback") right after each font,
+     so glyphs the fonts lack (▲, ⌕) render in scaled Arial instead of the same
+     fallbacks as references/templates. Turbopack ignores adjustFontFallback: false. */
+  --pixel: "Press Start 2P", system-ui, monospace;
+  --mono: "JetBrains Mono", "Courier Prime", "Courier New", monospace;
 
   color-scheme: dark;
 }
